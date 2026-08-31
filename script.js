@@ -212,7 +212,7 @@ function createScoreButtons(
 
 
         $(valueId).textContent =
-          `${score} / 10　数字が高いほど調子がいい`;
+          `${score} / 10　`;
 
       }
     );
@@ -751,11 +751,11 @@ function loadExistingRecord() {
 
   $("stutterValue")
     .textContent =
-      `${selectedStutter} / 10　数字が高いほど調子がいい`;
+      `${selectedStutter} / 10　`;
 
   $("moodValue")
     .textContent =
-      `${selectedMood} / 10　数字が高いほど調子がいい`;
+      `${selectedMood} / 10　`;
 
 
   $("memo").value =
