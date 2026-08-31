@@ -1,4 +1,5 @@
-const STORAGE_KEY = "kotobaConditionData";
+const STORAGE_KEY =
+  "kotobaConditionData";
 
 let selectedStutter = null;
 let selectedMood = null;
@@ -10,42 +11,62 @@ let conditionChart = null;
 // =========================
 
 function loadData() {
-  const saved = localStorage.getItem(STORAGE_KEY);
+
+  const saved =
+    localStorage.getItem(
+      STORAGE_KEY
+    );
+
 
   if (!saved) {
+
     return {
       persons: [],
       records: []
     };
+
   }
 
+
   try {
-    const data = JSON.parse(saved);
+
+    const data =
+      JSON.parse(saved);
+
 
     return {
-      persons: Array.isArray(data.persons)
-        ? data.persons
-        : [],
 
-      records: Array.isArray(data.records)
-        ? data.records
-        : []
+      persons:
+        Array.isArray(data.persons)
+          ? data.persons
+          : [],
+
+      records:
+        Array.isArray(data.records)
+          ? data.records
+          : []
+
     };
 
   } catch (error) {
+
     return {
       persons: [],
       records: []
     };
+
   }
+
 }
 
 
 function saveData(data) {
+
   localStorage.setItem(
     STORAGE_KEY,
     JSON.stringify(data)
   );
+
 }
 
 
@@ -54,40 +75,129 @@ function saveData(data) {
 // =========================
 
 function getTodayString() {
-  const today = new Date();
 
-  const year = today.getFullYear();
+  const today =
+    new Date();
 
-  const month = String(
-    today.getMonth() + 1
-  ).padStart(2, "0");
 
-  const day = String(
-    today.getDate()
-  ).padStart(2, "0");
+  const year =
+    today.getFullYear();
+
+
+  const month =
+    String(
+      today.getMonth() + 1
+    ).padStart(2, "0");
+
+
+  const day =
+    String(
+      today.getDate()
+    ).padStart(2, "0");
+
 
   return `${year}-${month}-${day}`;
+
 }
 
 
 function getCurrentMonthString() {
-  return getTodayString().slice(0, 7);
+
+  return getTodayString()
+    .slice(0,7);
+
 }
 
 
 function setInitialDates() {
+
   document.getElementById(
     "recordDate"
-  ).value = getTodayString();
+  ).value =
+    getTodayString();
+
 
   document.getElementById(
     "monthSelect"
-  ).value = getCurrentMonthString();
+  ).value =
+    getCurrentMonthString();
+
 }
 
 
 // =========================
-// 10段階ボタン
+// タブ
+// =========================
+
+function showRecordPage() {
+
+  document.getElementById(
+    "recordPage"
+  ).classList.add(
+    "active"
+  );
+
+
+  document.getElementById(
+    "reviewPage"
+  ).classList.remove(
+    "active"
+  );
+
+
+  document.getElementById(
+    "recordTabButton"
+  ).classList.add(
+    "active"
+  );
+
+
+  document.getElementById(
+    "reviewTabButton"
+  ).classList.remove(
+    "active"
+  );
+
+}
+
+
+function showReviewPage() {
+
+  document.getElementById(
+    "recordPage"
+  ).classList.remove(
+    "active"
+  );
+
+
+  document.getElementById(
+    "reviewPage"
+  ).classList.add(
+    "active"
+  );
+
+
+  document.getElementById(
+    "recordTabButton"
+  ).classList.remove(
+    "active"
+  );
+
+
+  document.getElementById(
+    "reviewTabButton"
+  ).classList.add(
+    "active"
+  );
+
+
+  updateReview();
+
+}
+
+
+// =========================
+// 10段階
 // =========================
 
 function createScoreButtons(
@@ -95,99 +205,178 @@ function createScoreButtons(
   valueId,
   type
 ) {
+
   const container =
-    document.getElementById(containerId);
+    document.getElementById(
+      containerId
+    );
+
 
   const valueDisplay =
-    document.getElementById(valueId);
+    document.getElementById(
+      valueId
+    );
+
 
   container.innerHTML = "";
 
 
-  for (let i = 1; i <= 10; i++) {
-    const button =
-      document.createElement("button");
+  for (
+    let i = 1;
+    i <= 10;
+    i++
+  ) {
 
-    button.type = "button";
-    button.className = "score-button";
-    button.textContent = i;
+    const button =
+      document.createElement(
+        "button"
+      );
+
+
+    button.type =
+      "button";
+
+
+    button.className =
+      "score-button";
+
+
+    button.textContent =
+      i;
 
 
     button.addEventListener(
       "click",
       function () {
+
+
         container
-          .querySelectorAll(".score-button")
-          .forEach(function (item) {
-            item.classList.remove("selected");
-          });
+          .querySelectorAll(
+            ".score-button"
+          )
+          .forEach(
+            function (item) {
+
+              item.classList.remove(
+                "selected"
+              );
+
+            }
+          );
 
 
-        button.classList.add("selected");
+        button.classList.add(
+          "selected"
+        );
 
 
-        if (type === "stutter") {
-          selectedStutter = i;
+        if (
+          type === "stutter"
+        ) {
+
+          selectedStutter =
+            i;
+
         } else {
-          selectedMood = i;
+
+          selectedMood =
+            i;
+
         }
 
 
         valueDisplay.textContent =
           `${i} / 10`;
+
       }
     );
 
 
-    container.appendChild(button);
+    container.appendChild(
+      button
+    );
+
   }
+
 }
 
 
 // =========================
-// 利用者一覧
+// 利用者
 // =========================
 
 function refreshPersonSelect(
   selectedPersonId = ""
 ) {
-  const data = loadData();
+
+  const data =
+    loadData();
+
 
   const select =
     document.getElementById(
       "personSelect"
     );
 
-  select.innerHTML = "";
+
+  select.innerHTML =
+    "";
 
 
   const firstOption =
-    document.createElement("option");
+    document.createElement(
+      "option"
+    );
 
-  firstOption.value = "";
+
+  firstOption.value =
+    "";
+
 
   firstOption.textContent =
     "利用者を選んでください";
 
-  select.appendChild(firstOption);
+
+  select.appendChild(
+    firstOption
+  );
 
 
   data.persons.forEach(
     function (person) {
+
+
       const option =
-        document.createElement("option");
+        document.createElement(
+          "option"
+        );
 
-      option.value = person.id;
-      option.textContent = person.name;
 
-      select.appendChild(option);
+      option.value =
+        person.id;
+
+
+      option.textContent =
+        person.name;
+
+
+      select.appendChild(
+        option
+      );
+
     }
   );
 
 
-  if (selectedPersonId) {
-    select.value = selectedPersonId;
+  if (
+    selectedPersonId
+  ) {
+
+    select.value =
+      selectedPersonId;
+
   }
+
 }
 
 
@@ -196,48 +385,74 @@ function refreshPersonSelect(
 // =========================
 
 function addPerson() {
-  const name = window.prompt(
-    "利用者の名前を入力してください"
-  );
 
-  if (name === null) {
+  const name =
+    window.prompt(
+      "利用者の名前を入力してください"
+    );
+
+
+  if (
+    name === null
+  ) {
+
     return;
+
   }
 
 
-  const trimmedName = name.trim();
+  const trimmedName =
+    name.trim();
 
-  if (!trimmedName) {
+
+  if (
+    !trimmedName
+  ) {
+
     showMessage(
       "名前を入力してください",
       true
     );
 
     return;
+
   }
 
 
-  const data = loadData();
+  const data =
+    loadData();
 
 
   const person = {
+
     id:
       "person_" +
       Date.now() +
       "_" +
       Math.random()
         .toString(36)
-        .slice(2, 8),
+        .slice(2,8),
 
-    name: trimmedName
+    name:
+      trimmedName
+
   };
 
 
-  data.persons.push(person);
+  data.persons.push(
+    person
+  );
 
-  saveData(data);
 
-  refreshPersonSelect(person.id);
+  saveData(
+    data
+  );
+
+
+  refreshPersonSelect(
+    person.id
+  );
+
 
   resetForm();
 
@@ -247,6 +462,7 @@ function addPerson() {
   showMessage(
     `${trimmedName}さんを追加しました`
   );
+
 }
 
 
@@ -255,34 +471,50 @@ function addPerson() {
 // =========================
 
 function deletePerson() {
+
   const personId =
     document.getElementById(
       "personSelect"
     ).value;
 
 
-  if (!personId) {
+  if (
+    !personId
+  ) {
+
     showMessage(
       "削除する利用者を選んでください",
       true
     );
 
     return;
+
   }
 
 
-  const data = loadData();
+  const data =
+    loadData();
+
 
   const person =
     data.persons.find(
       function (item) {
-        return item.id === personId;
+
+        return (
+          item.id ===
+          personId
+        );
+
       }
     );
 
 
-  if (!person) {
+  if (
+    !person
+  ) {
+
     return;
+
   }
 
 
@@ -292,15 +524,24 @@ function deletePerson() {
     );
 
 
-  if (!confirmed) {
+  if (
+    !confirmed
+  ) {
+
     return;
+
   }
 
 
   data.persons =
     data.persons.filter(
       function (item) {
-        return item.id !== personId;
+
+        return (
+          item.id !==
+          personId
+        );
+
       }
     );
 
@@ -308,12 +549,20 @@ function deletePerson() {
   data.records =
     data.records.filter(
       function (record) {
-        return record.personId !== personId;
+
+        return (
+          record.personId !==
+          personId
+        );
+
       }
     );
 
 
-  saveData(data);
+  saveData(
+    data
+  );
+
 
   refreshPersonSelect();
 
@@ -325,23 +574,27 @@ function deletePerson() {
   showMessage(
     `${person.name}さんを削除しました`
   );
+
 }
 
 
 // =========================
-// 記録保存
+// 保存
 // =========================
 
 function saveRecord() {
+
   const personId =
     document.getElementById(
       "personSelect"
     ).value;
 
+
   const date =
     document.getElementById(
       "recordDate"
     ).value;
+
 
   const memo =
     document.getElementById(
@@ -349,95 +602,145 @@ function saveRecord() {
     ).value.trim();
 
 
-  if (!personId) {
+  if (
+    !personId
+  ) {
+
     showMessage(
       "利用者を選んでください",
       true
     );
 
     return;
+
   }
 
 
-  if (!date) {
+  if (
+    !date
+  ) {
+
     showMessage(
       "日付を選んでください",
       true
     );
 
     return;
+
   }
 
 
-  if (selectedStutter === null) {
+  if (
+    selectedStutter === null
+  ) {
+
     showMessage(
       "吃音の調子を選んでください",
       true
     );
 
     return;
+
   }
 
 
-  if (selectedMood === null) {
+  if (
+    selectedMood === null
+  ) {
+
     showMessage(
       "心の調子を選んでください",
       true
     );
 
     return;
+
   }
 
 
-  const data = loadData();
+  const data =
+    loadData();
 
 
   const existingIndex =
     data.records.findIndex(
       function (record) {
+
         return (
-          record.personId === personId &&
-          record.date === date
+          record.personId ===
+            personId &&
+          record.date ===
+            date
         );
+
       }
     );
 
 
   const record = {
-    personId: personId,
-    date: date,
-    stutter: selectedStutter,
-    mood: selectedMood,
-    memo: memo,
-    updatedAt: new Date().toISOString()
+
+    personId:
+      personId,
+
+    date:
+      date,
+
+    stutter:
+      selectedStutter,
+
+    mood:
+      selectedMood,
+
+    memo:
+      memo,
+
+    updatedAt:
+      new Date()
+        .toISOString()
+
   };
 
 
-  if (existingIndex >= 0) {
-    data.records[existingIndex] = record;
+  if (
+    existingIndex >= 0
+  ) {
+
+    data.records[
+      existingIndex
+    ] = record;
+
 
     showMessage(
       "この日の記録を更新しました"
     );
 
   } else {
-    data.records.push(record);
+
+    data.records.push(
+      record
+    );
+
 
     showMessage(
       "記録を保存しました"
     );
+
   }
 
 
-  saveData(data);
+  saveData(
+    data
+  );
 
 
   document.getElementById(
     "monthSelect"
-  ).value = date.slice(0, 7);
+  ).value =
+    date.slice(0,7);
 
 
   updateReview();
+
 }
 
 
@@ -449,17 +752,22 @@ function showMessage(
   text,
   isError = false
 ) {
+
   const message =
     document.getElementById(
       "message"
     );
 
-  message.textContent = text;
+
+  message.textContent =
+    text;
+
 
   message.style.color =
     isError
       ? "#b45f59"
       : "#607b73";
+
 }
 
 
@@ -468,65 +776,97 @@ function showMessage(
 // =========================
 
 function resetForm() {
-  selectedStutter = null;
-  selectedMood = null;
+
+  selectedStutter =
+    null;
+
+
+  selectedMood =
+    null;
 
 
   document.getElementById(
     "stutterValue"
-  ).textContent = "未選択";
+  ).textContent =
+    "未選択";
 
 
   document.getElementById(
     "moodValue"
-  ).textContent = "未選択";
+  ).textContent =
+    "未選択";
 
 
   document
-    .querySelectorAll(".score-button")
-    .forEach(function (button) {
-      button.classList.remove("selected");
-    });
+    .querySelectorAll(
+      ".score-button"
+    )
+    .forEach(
+      function (button) {
+
+        button.classList.remove(
+          "selected"
+        );
+
+      }
+    );
 
 
   document.getElementById(
     "memo"
-  ).value = "";
+  ).value =
+    "";
+
 }
 
 
 // =========================
-// 保存済み点数を表示
+// 点数表示
 // =========================
 
 function selectScoreButton(
   containerId,
   score
 ) {
+
   const buttons =
     document
-      .getElementById(containerId)
-      .querySelectorAll(".score-button");
+      .getElementById(
+        containerId
+      )
+      .querySelectorAll(
+        ".score-button"
+      );
 
 
   buttons.forEach(
     function (button) {
+
       if (
-        Number(button.textContent) ===
+        Number(
+          button.textContent
+        ) ===
         Number(score)
       ) {
-        button.classList.add("selected");
+
+        button.classList.add(
+          "selected"
+        );
+
       }
+
     }
   );
+
 }
 
 
 // =========================
-// 過去の日付を開く
+// 保存済み記録読み込み
 // =========================
 
 function loadExistingRecord() {
+
   resetForm();
 
 
@@ -535,46 +875,67 @@ function loadExistingRecord() {
       "personSelect"
     ).value;
 
+
   const date =
     document.getElementById(
       "recordDate"
     ).value;
 
 
-  if (!personId || !date) {
+  if (
+    !personId ||
+    !date
+  ) {
+
     showMessage("");
+
     return;
+
   }
 
 
-  const data = loadData();
+  const data =
+    loadData();
 
 
   const record =
     data.records.find(
       function (item) {
+
         return (
-          item.personId === personId &&
-          item.date === date
+          item.personId ===
+            personId &&
+          item.date ===
+            date
         );
+
       }
     );
 
 
-  if (!record) {
+  if (
+    !record
+  ) {
+
     showMessage(
       "この日の記録はまだありません"
     );
 
     return;
+
   }
 
 
   selectedStutter =
-    Number(record.stutter);
+    Number(
+      record.stutter
+    );
+
 
   selectedMood =
-    Number(record.mood);
+    Number(
+      record.mood
+    );
 
 
   selectScoreButton(
@@ -610,18 +971,21 @@ function loadExistingRecord() {
   showMessage(
     "この日の記録があります"
   );
+
 }
 
 
 // =========================
-// 選択月の記録
+// 月データ
 // =========================
 
 function getMonthlyRecords() {
+
   const personId =
     document.getElementById(
       "personSelect"
     ).value;
+
 
   const month =
     document.getElementById(
@@ -629,28 +993,46 @@ function getMonthlyRecords() {
     ).value;
 
 
-  if (!personId || !month) {
+  if (
+    !personId ||
+    !month
+  ) {
+
     return [];
+
   }
 
 
-  const data = loadData();
+  const data =
+    loadData();
 
 
   return data.records
     .filter(
       function (record) {
+
         return (
-          record.personId === personId &&
-          record.date.startsWith(month)
+          record.personId ===
+            personId &&
+          record.date.startsWith(
+            month
+          )
         );
+
       }
     )
     .sort(
-      function (a, b) {
-        return a.date.localeCompare(b.date);
+      function (a,b) {
+
+        return (
+          a.date.localeCompare(
+            b.date
+          )
+        );
+
       }
     );
+
 }
 
 
@@ -662,36 +1044,54 @@ function calculateAverage(
   records,
   key
 ) {
-  if (records.length === 0) {
+
+  if (
+    records.length === 0
+  ) {
+
     return null;
+
   }
 
 
   const total =
     records.reduce(
-      function (sum, record) {
-        return sum + Number(record[key]);
+      function (sum,record) {
+
+        return (
+          sum +
+          Number(
+            record[key]
+          )
+        );
+
       },
       0
     );
 
 
   return (
-    total / records.length
+    total /
+    records.length
   ).toFixed(1);
+
 }
 
 
 // =========================
-// 月平均表示
+// 月平均
 // =========================
 
-function updateSummary(records) {
+function updateSummary(
+  records
+) {
+
   const stutterAverage =
     calculateAverage(
       records,
       "stutter"
     );
+
 
   const moodAverage =
     calculateAverage(
@@ -720,6 +1120,7 @@ function updateSummary(records) {
     "recordCount"
   ).textContent =
     `${records.length}日`;
+
 }
 
 
@@ -727,34 +1128,52 @@ function updateSummary(records) {
 // グラフ
 // =========================
 
-function updateChart(records) {
+function updateChart(
+  records
+) {
+
   const canvas =
     document.getElementById(
       "conditionChart"
     );
 
 
-  if (conditionChart) {
+  if (
+    conditionChart
+  ) {
+
     conditionChart.destroy();
-    conditionChart = null;
+
+    conditionChart =
+      null;
+
   }
 
 
   if (
-    typeof Chart === "undefined"
+    typeof Chart ===
+    "undefined"
   ) {
+
     return;
+
   }
 
 
   const labels =
     records.map(
       function (record) {
+
         return (
           Number(
-            record.date.slice(8, 10)
-          ) + "日"
+            record.date.slice(
+              8,
+              10
+            )
+          ) +
+          "日"
         );
+
       }
     );
 
@@ -762,7 +1181,11 @@ function updateChart(records) {
   const stutterData =
     records.map(
       function (record) {
-        return Number(record.stutter);
+
+        return Number(
+          record.stutter
+        );
+
       }
     );
 
@@ -770,7 +1193,11 @@ function updateChart(records) {
   const moodData =
     records.map(
       function (record) {
-        return Number(record.mood);
+
+        return Number(
+          record.mood
+        );
+
       }
     );
 
@@ -779,81 +1206,150 @@ function updateChart(records) {
     new Chart(
       canvas,
       {
-        type: "line",
+
+        type:
+          "line",
 
         data: {
-          labels: labels,
+
+          labels:
+            labels,
 
           datasets: [
+
             {
-              label: "吃音の調子",
-              data: stutterData,
-              borderColor: "#799b91",
-              backgroundColor: "#799b91",
-              tension: 0.25,
-              pointRadius: 5,
-              pointHoverRadius: 6
+
+              label:
+                "吃音の調子",
+
+              data:
+                stutterData,
+
+              borderColor:
+                "#799b91",
+
+              backgroundColor:
+                "#799b91",
+
+              tension:
+                0.25,
+
+              pointRadius:
+                5,
+
+              pointHoverRadius:
+                6
+
             },
 
             {
-              label: "心の調子",
-              data: moodData,
-              borderColor: "#b9957b",
-              backgroundColor: "#b9957b",
-              tension: 0.25,
-              pointRadius: 5,
-              pointHoverRadius: 6
+
+              label:
+                "心の調子",
+
+              data:
+                moodData,
+
+              borderColor:
+                "#b9957b",
+
+              backgroundColor:
+                "#b9957b",
+
+              tension:
+                0.25,
+
+              pointRadius:
+                5,
+
+              pointHoverRadius:
+                6
+
             }
+
           ]
+
         },
 
         options: {
-          responsive: true,
 
-          maintainAspectRatio: false,
+          responsive:
+            true,
+
+          maintainAspectRatio:
+            false,
 
           scales: {
+
             y: {
-              min: 1,
-              max: 10,
+
+              min:
+                1,
+
+              max:
+                10,
 
               ticks: {
-                stepSize: 1
+
+                stepSize:
+                  1
+
               }
+
             }
+
           },
 
           plugins: {
+
             legend: {
+
               labels: {
-                usePointStyle: true
+
+                usePointStyle:
+                  true
+
               }
+
             }
+
           }
+
         }
+
       }
     );
+
 }
 
 
 // =========================
-// 過去の記録一覧
+// 過去記録
 // =========================
 
-function updateHistory(records) {
+function updateHistory(
+  records
+) {
+
   const historyList =
     document.getElementById(
       "historyList"
     );
 
-  historyList.innerHTML = "";
+
+  historyList.innerHTML =
+    "";
 
 
-  if (records.length === 0) {
+  if (
+    records.length === 0
+  ) {
+
     historyList.innerHTML =
       '<div class="empty-message">この月の記録はまだありません</div>';
 
     return;
+
   }
 
 
@@ -863,35 +1359,55 @@ function updateHistory(records) {
 
   reversed.forEach(
     function (record) {
+
+
       const item =
-        document.createElement("div");
+        document.createElement(
+          "div"
+        );
+
 
       item.className =
         "history-item";
 
 
       const parts =
-        record.date.split("-");
+        record.date.split(
+          "-"
+        );
+
 
       const month =
-        Number(parts[1]);
+        Number(
+          parts[1]
+        );
+
 
       const day =
-        Number(parts[2]);
+        Number(
+          parts[2]
+        );
 
 
       const top =
-        document.createElement("div");
+        document.createElement(
+          "div"
+        );
+
 
       top.className =
         "history-top";
 
 
       const dateElement =
-        document.createElement("div");
+        document.createElement(
+          "div"
+        );
+
 
       dateElement.className =
         "history-date";
+
 
       dateElement.textContent =
         `${month}月${day}日`;
@@ -903,27 +1419,38 @@ function updateHistory(records) {
 
 
       const scores =
-        document.createElement("div");
+        document.createElement(
+          "div"
+        );
+
 
       scores.className =
         "history-scores";
 
 
       const stutterTag =
-        document.createElement("div");
+        document.createElement(
+          "div"
+        );
+
 
       stutterTag.className =
         "score-tag";
+
 
       stutterTag.textContent =
         `吃音 ${record.stutter} / 10`;
 
 
       const moodTag =
-        document.createElement("div");
+        document.createElement(
+          "div"
+        );
+
 
       moodTag.className =
         "score-tag";
+
 
       moodTag.textContent =
         `心 ${record.mood} / 10`;
@@ -933,48 +1460,74 @@ function updateHistory(records) {
         stutterTag
       );
 
+
       scores.appendChild(
         moodTag
       );
 
 
-      item.appendChild(top);
+      item.appendChild(
+        top
+      );
 
-      item.appendChild(scores);
+
+      item.appendChild(
+        scores
+      );
 
 
-      if (record.memo) {
+      if (
+        record.memo
+      ) {
+
         const memo =
-          document.createElement("div");
+          document.createElement(
+            "div"
+          );
+
 
         memo.className =
           "history-memo";
 
+
         memo.textContent =
           record.memo;
 
-        item.appendChild(memo);
+
+        item.appendChild(
+          memo
+        );
+
       }
 
-
-      /*
-        過去記録をタップすると
-        その日の入力欄を開く
-      */
 
       item.addEventListener(
         "click",
         function () {
+
+
           document.getElementById(
             "recordDate"
-          ).value = record.date;
+          ).value =
+            record.date;
+
 
           loadExistingRecord();
 
+
+          showRecordPage();
+
+
           window.scrollTo({
-            top: 0,
-            behavior: "smooth"
+
+            top:
+              0,
+
+            behavior:
+              "smooth"
+
           });
+
         }
       );
 
@@ -982,28 +1535,37 @@ function updateHistory(records) {
       historyList.appendChild(
         item
       );
+
     }
   );
+
 }
 
 
 // =========================
-// 振り返り全体
+// 振り返り更新
 // =========================
 
 function updateReview() {
+
   const personId =
     document.getElementById(
       "personSelect"
     ).value;
 
 
-  if (!personId) {
+  if (
+    !personId
+  ) {
+
     updateSummary([]);
+
     updateHistory([]);
+
     updateChart([]);
 
     return;
+
   }
 
 
@@ -1011,11 +1573,20 @@ function updateReview() {
     getMonthlyRecords();
 
 
-  updateSummary(records);
+  updateSummary(
+    records
+  );
 
-  updateHistory(records);
 
-  updateChart(records);
+  updateHistory(
+    records
+  );
+
+
+  updateChart(
+    records
+  );
+
 }
 
 
@@ -1043,10 +1614,32 @@ refreshPersonSelect();
 
 updateReview();
 
+showRecordPage();
+
 
 // =========================
 // イベント
 // =========================
+
+document
+  .getElementById(
+    "recordTabButton"
+  )
+  .addEventListener(
+    "click",
+    showRecordPage
+  );
+
+
+document
+  .getElementById(
+    "reviewTabButton"
+  )
+  .addEventListener(
+    "click",
+    showReviewPage
+  );
+
 
 document
   .getElementById(
@@ -1085,8 +1678,11 @@ document
   .addEventListener(
     "change",
     function () {
+
       loadExistingRecord();
+
       updateReview();
+
     }
   );
 
