@@ -1,287 +1,38 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>ことばの調子記録</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Hiragino Sans",
-        "Yu Gothic",
-        sans-serif;
-      background: #fffaf4;
-      color: #4a4744;
-    }
-
-    .app {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 24px 16px 48px;
-    }
-
-    .header {
-      text-align: center;
-      margin-bottom: 24px;
-    }
-
-    h1 {
-      margin: 4px 0 8px;
-      font-size: 28px;
-      color: #4d5f6d;
-      letter-spacing: 0.04em;
-    }
-
-    .subtitle {
-      color: #8a817a;
-      font-size: 14px;
-      line-height: 1.7;
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.95);
-      border: 1px solid #f0e7dd;
-      border-radius: 24px;
-      padding: 20px;
-      margin-bottom: 18px;
-      box-shadow:
-        0 6px 20px rgba(120, 105, 90, 0.07);
-    }
-
-    .card-title {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 16px;
-    }
-
-    .card-icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      background: #eef4f1;
-      font-size: 17px;
-    }
-
-    h2 {
-      margin: 0;
-      font-size: 19px;
-      color: #55514d;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: 700;
-      color: #625d58;
-    }
-
-    input,
-    select,
-    textarea {
-      width: 100%;
-      min-height: 48px;
-      padding: 12px 14px;
-      border: 1px solid #e3ddd5;
-      border-radius: 15px;
-      background: #fffdfa;
-      color: #4a4744;
-      font-size: 17px;
-      font-family: inherit;
-      outline: none;
-    }
-
-    input:focus,
-    select:focus,
-    textarea:focus {
-      border-color: #91aaa2;
-      box-shadow: 0 0 0 3px rgba(145, 170, 162, 0.14);
-    }
-
-    textarea {
-      min-height: 100px;
-      resize: vertical;
-      line-height: 1.7;
-    }
-
-    .field {
-      margin-bottom: 22px;
-    }
-
-    .person-row {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto auto;
-      gap: 9px;
-      align-items: center;
-    }
-
-    button {
-      min-height: 46px;
-      border: none;
-      border-radius: 15px;
-      padding: 10px 15px;
-      font-family: inherit;
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    button:active {
-      transform: scale(0.98);
-    }
-
-    .secondary-button {
-      background: #eaf2ef;
-      color: #557069;
-    }
-
-    .danger-button {
-      background: #fff0ed;
-      color: #a45e59;
-    }
-
-    .save-button {
-      width: 100%;
-      min-height: 56px;
-      border-radius: 18px;
-      background: #799b91;
-      color: white;
-      font-size: 18px;
-      letter-spacing: 0.03em;
-      box-shadow:
-        0 5px 12px rgba(91, 124, 114, 0.16);
-    }
-
-    .score-block {
-      padding: 17px;
-      border-radius: 19px;
-      background: #fcfaf6;
-      border: 1px solid #f0e8df;
-      margin-bottom: 18px;
-    }
-
-    .score-title {
-      margin-bottom: 12px;
-      font-size: 17px;
-      color: #5c5752;
-    }
-
-    .score-guide {
-      margin-top: 4px;
-      color: #9a9189;
-      font-size: 12px;
-      font-weight: normal;
-    }
-
-    .score-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 9px;
-    }
-
-    .score-button {
-      aspect-ratio: 1.25 / 1;
-      min-height: 48px;
-      padding: 6px;
-      border: 1px solid #e3e1dc;
-      border-radius: 16px;
-      background: #ffffff;
-      color: #69635e;
-      font-size: 18px;
-      box-shadow:
-        0 2px 7px rgba(100, 90, 80, 0.05);
-    }
-
-    .score-button.selected {
-      border-color: #799b91;
-      background: #799b91;
-      color: white;
-      box-shadow:
-        0 4px 10px rgba(91, 124, 114, 0.18);
-    }
-
-    .score-value {
-      min-height: 25px;
-      margin-top: 11px;
-      text-align: center;
-      color: #71877f;
-      font-weight: 700;
-    }
-
-    .message {
-      min-height: 24px;
-      margin-top: 13px;
-      text-align: center;
-      font-weight: 700;
-      line-height: 1.5;
-    }
-
-    .small-note {
-      color: #8a817a;
-      font-size: 13px;
-      line-height: 1.8;
-    }
-
-    .soft-line {
-      height: 1px;
-      margin: 20px 0;
-      background: #f1ebe4;
-    }
-
-    @media (max-width: 540px) {
-      .app {
-        padding: 18px 13px 40px;
-      }
-
-      h1 {
-        font-size: 24px;
-      }
-
-      .card {
-        padding: 17px;
-        border-radius: 21px;
-      }
-
-      .person-row {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .person-row select {
-        grid-column: 1 / -1;
-      }
-
-      .score-grid {
-        gap: 7px;
-      }
-
-      .score-button {
-        min-height: 46px;
-        border-radius: 14px;
-      }
-    }
-  </style>
+  <!-- デザインは style.css に分離 -->
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
 </head>
+
 
 <body>
 
   <main class="app">
 
+
+    <!-- =====================
+         ヘッダー
+    ====================== -->
+
     <header class="header">
 
-      <h1>ことばの調子記録</h1>
+      <h1>
+        ことばの調子記録
+      </h1>
 
       <div class="subtitle">
         今日の話す調子と心の調子を<br>
@@ -290,6 +41,11 @@
 
     </header>
 
+
+
+    <!-- =====================
+         利用者
+    ====================== -->
 
     <section class="card">
 
@@ -339,6 +95,11 @@
     </section>
 
 
+
+    <!-- =====================
+         今日の記録
+    ====================== -->
+
     <section class="card">
 
       <div class="card-title">
@@ -354,6 +115,9 @@
       </div>
 
 
+
+      <!-- 日付 -->
+
       <div class="field">
 
         <label for="recordDate">
@@ -367,6 +131,9 @@
 
       </div>
 
+
+
+      <!-- 吃音の調子 -->
 
       <div class="score-block">
 
@@ -382,10 +149,12 @@
 
         </div>
 
+
         <div
           id="stutterButtons"
           class="score-grid"
         ></div>
+
 
         <div
           id="stutterValue"
@@ -396,6 +165,9 @@
 
       </div>
 
+
+
+      <!-- 心の調子 -->
 
       <div class="score-block">
 
@@ -411,10 +183,12 @@
 
         </div>
 
+
         <div
           id="moodButtons"
           class="score-grid"
         ></div>
+
 
         <div
           id="moodValue"
@@ -425,6 +199,9 @@
 
       </div>
 
+
+
+      <!-- メモ -->
 
       <div class="field">
 
@@ -440,6 +217,9 @@
       </div>
 
 
+
+      <!-- 保存 -->
+
       <button
         id="saveButton"
         class="save-button"
@@ -448,6 +228,7 @@
         記録する
       </button>
 
+
       <div
         id="message"
         class="message"
@@ -455,6 +236,155 @@
 
     </section>
 
+
+
+    <!-- =====================
+         月の振り返り
+    ====================== -->
+
+    <section class="card">
+
+      <div class="card-title">
+
+        <div class="card-icon">
+          📊
+        </div>
+
+        <h2>
+          月の振り返り
+        </h2>
+
+      </div>
+
+
+
+      <!-- 月選択 -->
+
+      <div class="field">
+
+        <label for="monthSelect">
+          月を選ぶ
+        </label>
+
+        <input
+          id="monthSelect"
+          type="month"
+        >
+
+      </div>
+
+
+
+      <!-- 月平均 -->
+
+      <div class="summary-grid">
+
+
+        <div class="summary-box">
+
+          <div class="summary-label">
+            吃音の調子 平均
+          </div>
+
+          <div
+            id="stutterAverage"
+            class="summary-value"
+          >
+            -
+          </div>
+
+        </div>
+
+
+
+        <div class="summary-box">
+
+          <div class="summary-label">
+            心の調子 平均
+          </div>
+
+          <div
+            id="moodAverage"
+            class="summary-value"
+          >
+            -
+          </div>
+
+        </div>
+
+
+
+        <div class="summary-box">
+
+          <div class="summary-label">
+            記録した日
+          </div>
+
+          <div
+            id="recordCount"
+            class="summary-value"
+          >
+            0日
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+
+      <!-- グラフ -->
+
+      <div class="chart-wrap">
+
+        <canvas
+          id="conditionChart"
+        ></canvas>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================
+         過去の記録
+    ====================== -->
+
+    <section class="card">
+
+      <div class="card-title">
+
+        <div class="card-icon">
+          📖
+        </div>
+
+        <h2>
+          過去の記録
+        </h2>
+
+      </div>
+
+
+      <div
+        id="historyList"
+        class="history-list"
+      >
+
+        <div class="empty-message">
+          利用者を選ぶと記録が表示されます
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================
+         記録について
+    ====================== -->
 
     <section class="card">
 
@@ -470,24 +400,34 @@
 
       </div>
 
+
       <div class="small-note">
+
         記録はこの端末のブラウザ内に保存されます。
+
         利用者ごとに記録を分けて管理できます。
-      </div>
 
-      <div class="soft-line"></div>
-
-      <div class="small-note">
-        次の段階では、過去の記録や月平均、
-        調子の変化が分かるグラフも追加できます。
       </div>
 
     </section>
 
+
   </main>
 
 
+
+  <!-- グラフ -->
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/chart.js"
+  ></script>
+
+
+  <!-- アプリの動作 -->
+
   <script src="script.js"></script>
 
+
 </body>
+
 </html>
