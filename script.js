@@ -1,10 +1,11 @@
-const STORAGE_KEY = "kotobaConditionData";
+const STORAGE_KEY =
+  "kotobaConditionData";
 
 let selectedStutter = null;
 let selectedMood = null;
 let conditionChart = null;
 
-const $ = (id) =>
+const $ = id =>
   document.getElementById(id);
 
 
@@ -13,21 +14,28 @@ const $ = (id) =>
 // =========================
 
 function loadData() {
+
   try {
+
     const saved =
-      localStorage.getItem(STORAGE_KEY);
+      localStorage.getItem(
+        STORAGE_KEY
+      );
 
     if (!saved) {
+
       return {
         persons: [],
         records: []
       };
+
     }
 
     const data =
       JSON.parse(saved);
 
     return {
+
       persons:
         Array.isArray(data.persons)
           ? data.persons
@@ -37,22 +45,28 @@ function loadData() {
         Array.isArray(data.records)
           ? data.records
           : []
+
     };
 
   } catch {
+
     return {
       persons: [],
       records: []
     };
+
   }
+
 }
 
 
 function saveData(data) {
+
   localStorage.setItem(
     STORAGE_KEY,
     JSON.stringify(data)
   );
+
 }
 
 
@@ -61,7 +75,9 @@ function saveData(data) {
 // =========================
 
 function getTodayString() {
-  const date = new Date();
+
+  const date =
+    new Date();
 
   const year =
     date.getFullYear();
@@ -77,6 +93,7 @@ function getTodayString() {
     ).padStart(2, "0");
 
   return `${year}-${month}-${day}`;
+
 }
 
 
@@ -116,6 +133,7 @@ function showPage(page) {
   if (!recordMode) {
     updateReview();
   }
+
 }
 
 
@@ -132,19 +150,23 @@ function createScoreButtons(
   const container =
     $(containerId);
 
-  container.innerHTML = "";
+  container.innerHTML =
+    "";
 
 
-  for (let score = 1;
-       score <= 10;
-       score++) {
+  for (
+    let score = 1;
+    score <= 10;
+    score++
+  ) {
 
     const button =
       document.createElement(
         "button"
       );
 
-    button.type = "button";
+    button.type =
+      "button";
 
     button.className =
       "score-button";
@@ -174,17 +196,24 @@ function createScoreButtons(
         );
 
 
-        if (type === "stutter") {
+        if (
+          type === "stutter"
+        ) {
+
           selectedStutter =
             score;
+
         } else {
+
           selectedMood =
             score;
+
         }
 
 
         $(valueId).textContent =
-          `${score} / 10`;
+          `${score} / 10　数字が高いほど調子がいい`;
+
       }
     );
 
@@ -192,20 +221,29 @@ function createScoreButtons(
     container.appendChild(
       button
     );
+
   }
+
 }
 
 
 function resetScores() {
 
-  selectedStutter = null;
-  selectedMood = null;
+  selectedStutter =
+    null;
+
+  selectedMood =
+    null;
+
 
   $("stutterValue")
-    .textContent = "未選択";
+    .textContent =
+      "未選択";
 
   $("moodValue")
-    .textContent = "未選択";
+    .textContent =
+      "未選択";
+
 
   document
     .querySelectorAll(
@@ -217,6 +255,7 @@ function resetScores() {
           "selected"
         )
     );
+
 }
 
 
@@ -229,19 +268,25 @@ function showSavedScore(
     .querySelectorAll(
       ".score-button"
     )
-    .forEach(button => {
+    .forEach(
+      button => {
 
-      if (
-        Number(
-          button.textContent
-        ) === Number(score)
-      ) {
-        button.classList.add(
-          "selected"
-        );
+        if (
+          Number(
+            button.textContent
+          ) ===
+          Number(score)
+        ) {
+
+          button.classList.add(
+            "selected"
+          );
+
+        }
+
       }
+    );
 
-    });
 }
 
 
@@ -259,7 +304,8 @@ function refreshPersons(
   const select =
     $("personSelect");
 
-  select.innerHTML = "";
+  select.innerHTML =
+    "";
 
 
   const empty =
@@ -267,12 +313,15 @@ function refreshPersons(
       "option"
     );
 
-  empty.value = "";
+  empty.value =
+    "";
 
   empty.textContent =
     "利用者を選んでください";
 
-  select.appendChild(empty);
+  select.appendChild(
+    empty
+  );
 
 
   data.persons.forEach(
@@ -298,9 +347,12 @@ function refreshPersons(
 
 
   if (selectedId) {
+
     select.value =
       selectedId;
+
   }
+
 }
 
 
@@ -311,21 +363,28 @@ function addPerson() {
       "利用者の名前を入力してください"
     );
 
-  if (input === null) {
+  if (
+    input === null
+  ) {
+
     return;
+
   }
 
 
   const name =
     input.trim();
 
+
   if (!name) {
+
     showMessage(
       "名前を入力してください",
       true
     );
 
     return;
+
   }
 
 
@@ -334,15 +393,18 @@ function addPerson() {
 
 
   const person = {
+
     id:
       "person_" +
       Date.now() +
       "_" +
       Math.random()
         .toString(36)
-        .slice(2, 8),
+        .slice(2,8),
 
-    name
+    name:
+      name
+
   };
 
 
@@ -360,9 +422,11 @@ function addPerson() {
 
   updateReview();
 
+
   showMessage(
     `${name}さんを追加しました`
   );
+
 }
 
 
@@ -371,24 +435,29 @@ function deletePerson() {
   const personId =
     $("personSelect").value;
 
+
   if (!personId) {
+
     showMessage(
       "削除する利用者を選んでください",
       true
     );
 
     return;
+
   }
 
 
   const data =
     loadData();
 
+
   const person =
     data.persons.find(
-      p =>
-        p.id === personId
+      person =>
+        person.id === personId
     );
+
 
   if (!person) {
     return;
@@ -400,6 +469,7 @@ function deletePerson() {
       `${person.name}さんを削除しますか？\n\nこの利用者の記録もすべて削除されます。`
     );
 
+
   if (!ok) {
     return;
   }
@@ -407,14 +477,16 @@ function deletePerson() {
 
   data.persons =
     data.persons.filter(
-      p =>
-        p.id !== personId
+      person =>
+        person.id !== personId
     );
+
 
   data.records =
     data.records.filter(
-      r =>
-        r.personId !== personId
+      record =>
+        record.personId !==
+        personId
     );
 
 
@@ -426,9 +498,11 @@ function deletePerson() {
 
   updateReview();
 
+
   showMessage(
     `${person.name}さんを削除しました`
   );
+
 }
 
 
@@ -449,39 +523,54 @@ function saveRecord() {
 
 
   if (!personId) {
+
     showMessage(
       "利用者を選んでください",
       true
     );
 
     return;
+
   }
 
+
   if (!date) {
+
     showMessage(
       "日付を選んでください",
       true
     );
 
     return;
+
   }
 
-  if (selectedStutter === null) {
+
+  if (
+    selectedStutter === null
+  ) {
+
     showMessage(
       "吃音の調子を選んでください",
       true
     );
 
     return;
+
   }
 
-  if (selectedMood === null) {
+
+  if (
+    selectedMood === null
+  ) {
+
     showMessage(
       "心の調子を選んでください",
       true
     );
 
     return;
+
   }
 
 
@@ -500,8 +589,12 @@ function saveRecord() {
 
 
   const record = {
-    personId,
-    date,
+
+    personId:
+      personId,
+
+    date:
+      date,
 
     stutter:
       selectedStutter,
@@ -509,15 +602,19 @@ function saveRecord() {
     mood:
       selectedMood,
 
-    memo,
+    memo:
+      memo,
 
     updatedAt:
       new Date()
         .toISOString()
+
   };
 
 
-  if (index >= 0) {
+  if (
+    index >= 0
+  ) {
 
     data.records[index] =
       record;
@@ -535,15 +632,19 @@ function saveRecord() {
     showMessage(
       "記録を保存しました"
     );
+
   }
 
 
   saveData(data);
 
+
   $("monthSelect").value =
-    date.slice(0, 7);
+    date.slice(0,7);
+
 
   updateReview();
+
 }
 
 
@@ -551,7 +652,9 @@ function resetForm() {
 
   resetScores();
 
-  $("memo").value = "";
+  $("memo").value =
+    "";
+
 }
 
 
@@ -567,6 +670,7 @@ function showMessage(
     error
       ? "#b45f59"
       : "#607b73";
+
 }
 
 
@@ -578,6 +682,7 @@ function loadExistingRecord() {
 
   resetForm();
 
+
   const personId =
     $("personSelect").value;
 
@@ -585,9 +690,15 @@ function loadExistingRecord() {
     $("recordDate").value;
 
 
-  if (!personId || !date) {
+  if (
+    !personId ||
+    !date
+  ) {
+
     showMessage("");
+
     return;
+
   }
 
 
@@ -606,11 +717,13 @@ function loadExistingRecord() {
 
 
   if (!record) {
+
     showMessage(
       "この日の記録はまだありません"
     );
 
     return;
+
   }
 
 
@@ -638,11 +751,12 @@ function loadExistingRecord() {
 
   $("stutterValue")
     .textContent =
-      `${selectedStutter} / 10`;
+      `${selectedStutter} / 10　数字が高いほど調子がいい`;
 
   $("moodValue")
     .textContent =
-      `${selectedMood} / 10`;
+      `${selectedMood} / 10　数字が高いほど調子がいい`;
+
 
   $("memo").value =
     record.memo || "";
@@ -651,11 +765,12 @@ function loadExistingRecord() {
   showMessage(
     "この日の記録があります"
   );
+
 }
 
 
 // =========================
-// 月の記録
+// 月データ
 // =========================
 
 function getMonthlyRecords() {
@@ -667,8 +782,13 @@ function getMonthlyRecords() {
     $("monthSelect").value;
 
 
-  if (!personId || !month) {
+  if (
+    !personId ||
+    !month
+  ) {
+
     return [];
+
   }
 
 
@@ -683,11 +803,12 @@ function getMonthlyRecords() {
         )
     )
     .sort(
-      (a, b) =>
+      (a,b) =>
         a.date.localeCompare(
           b.date
         )
     );
+
 }
 
 
@@ -696,14 +817,18 @@ function average(
   key
 ) {
 
-  if (!records.length) {
+  if (
+    !records.length
+  ) {
+
     return null;
+
   }
 
 
   const total =
     records.reduce(
-      (sum, record) =>
+      (sum,record) =>
         sum +
         Number(record[key]),
       0
@@ -714,6 +839,7 @@ function average(
     total /
     records.length
   ).toFixed(1);
+
 }
 
 
@@ -745,6 +871,7 @@ function updateSummary(
   $("recordCount")
     .textContent =
       `${records.length}日`;
+
 }
 
 
@@ -756,9 +883,15 @@ function updateChart(
   records
 ) {
 
-  if (conditionChart) {
+  if (
+    conditionChart
+  ) {
+
     conditionChart.destroy();
-    conditionChart = null;
+
+    conditionChart =
+      null;
+
   }
 
 
@@ -766,38 +899,45 @@ function updateChart(
     typeof Chart ===
     "undefined"
   ) {
+
     return;
+
   }
-
-
-  const labels =
-    records.map(
-      record =>
-        `${Number(
-          record.date.slice(8,10)
-        )}日`
-    );
 
 
   conditionChart =
     new Chart(
       $("conditionChart"),
       {
-        type: "line",
+
+        type:
+          "line",
 
         data: {
-          labels,
+
+          labels:
+            records.map(
+              record =>
+                `${Number(
+                  record.date.slice(
+                    8,
+                    10
+                  )
+                )}日`
+            ),
 
           datasets: [
+
             {
+
               label:
                 "吃音の調子",
 
               data:
                 records.map(
-                  r =>
+                  record =>
                     Number(
-                      r.stutter
+                      record.stutter
                     )
                 ),
 
@@ -807,19 +947,24 @@ function updateChart(
               backgroundColor:
                 "#799b91",
 
-              tension: 0.25,
-              pointRadius: 5
+              tension:
+                0.25,
+
+              pointRadius:
+                5
+
             },
 
             {
+
               label:
                 "心の調子",
 
               data:
                 records.map(
-                  r =>
+                  record =>
                     Number(
-                      r.mood
+                      record.mood
                     )
                 ),
 
@@ -829,36 +974,63 @@ function updateChart(
               backgroundColor:
                 "#b9957b",
 
-              tension: 0.25,
-              pointRadius: 5
+              tension:
+                0.25,
+
+              pointRadius:
+                5
+
             }
+
           ]
+
         },
 
         options: {
-          responsive: true,
+
+          responsive:
+            true,
 
           maintainAspectRatio:
             false,
 
           scales: {
+
             y: {
-              min: 1,
-              max: 10,
+
+              min:
+                1,
+
+              max:
+                10,
 
               ticks: {
-                stepSize: 1
+                stepSize:
+                  1
+              },
+
+              title: {
+                display:
+                  true,
+
+                text:
+                  "高いほど調子がいい"
               }
+
             }
+
           }
+
         }
+
       }
     );
+
 }
 
 
 // =========================
-// 過去の記録
+// 過去記録
 // =========================
 
 function updateHistory(
@@ -868,10 +1040,13 @@ function updateHistory(
   const list =
     $("historyList");
 
-  list.innerHTML = "";
+  list.innerHTML =
+    "";
 
 
-  if (!records.length) {
+  if (
+    !records.length
+  ) {
 
     const empty =
       document.createElement(
@@ -884,138 +1059,150 @@ function updateHistory(
     empty.textContent =
       "この月の記録はまだありません";
 
-    list.appendChild(empty);
+    list.appendChild(
+      empty
+    );
 
     return;
+
   }
 
 
   [...records]
     .reverse()
-    .forEach(record => {
+    .forEach(
+      record => {
 
-      const item =
-        document.createElement(
-          "div"
-        );
-
-      item.className =
-        "history-item";
-
-
-      const top =
-        document.createElement(
-          "div"
-        );
-
-      top.className =
-        "history-top";
-
-
-      const date =
-        document.createElement(
-          "div"
-        );
-
-      date.className =
-        "history-date";
-
-
-      const parts =
-        record.date.split("-");
-
-      date.textContent =
-        `${Number(parts[1])}月${Number(parts[2])}日`;
-
-
-      top.appendChild(date);
-
-
-      const scores =
-        document.createElement(
-          "div"
-        );
-
-      scores.className =
-        "history-scores";
-
-
-      const stutter =
-        document.createElement(
-          "div"
-        );
-
-      stutter.className =
-        "score-tag";
-
-      stutter.textContent =
-        `吃音 ${record.stutter} / 10`;
-
-
-      const mood =
-        document.createElement(
-          "div"
-        );
-
-      mood.className =
-        "score-tag";
-
-      mood.textContent =
-        `心 ${record.mood} / 10`;
-
-
-      scores.appendChild(
-        stutter
-      );
-
-      scores.appendChild(
-        mood
-      );
-
-
-      item.appendChild(top);
-      item.appendChild(scores);
-
-
-      if (record.memo) {
-
-        const memo =
+        const item =
           document.createElement(
             "div"
           );
 
-        memo.className =
-          "history-memo";
-
-        memo.textContent =
-          record.memo;
-
-        item.appendChild(memo);
-      }
+        item.className =
+          "history-item";
 
 
-      item.addEventListener(
-        "click",
-        () => {
+        const date =
+          document.createElement(
+            "div"
+          );
 
-          $("recordDate").value =
-            record.date;
+        date.className =
+          "history-date";
 
-          loadExistingRecord();
 
-          showPage("record");
+        const parts =
+          record.date.split(
+            "-"
+          );
 
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-          });
+
+        date.textContent =
+          `${Number(parts[1])}月${Number(parts[2])}日`;
+
+
+        const scores =
+          document.createElement(
+            "div"
+          );
+
+        scores.className =
+          "history-scores";
+
+
+        const stutter =
+          document.createElement(
+            "div"
+          );
+
+        stutter.className =
+          "score-tag";
+
+        stutter.textContent =
+          `吃音 ${record.stutter} / 10`;
+
+
+        const mood =
+          document.createElement(
+            "div"
+          );
+
+        mood.className =
+          "score-tag";
+
+        mood.textContent =
+          `心 ${record.mood} / 10`;
+
+
+        scores.appendChild(
+          stutter
+        );
+
+        scores.appendChild(
+          mood
+        );
+
+
+        item.appendChild(
+          date
+        );
+
+        item.appendChild(
+          scores
+        );
+
+
+        if (
+          record.memo
+        ) {
+
+          const memo =
+            document.createElement(
+              "div"
+            );
+
+          memo.className =
+            "history-memo";
+
+          memo.textContent =
+            record.memo;
+
+          item.appendChild(
+            memo
+          );
+
         }
-      );
 
 
-      list.appendChild(item);
+        item.addEventListener(
+          "click",
+          () => {
 
-    });
+            $("recordDate").value =
+              record.date;
+
+            loadExistingRecord();
+
+            showPage(
+              "record"
+            );
+
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth"
+            });
+
+          }
+        );
+
+
+        list.appendChild(
+          item
+        );
+
+      }
+    );
+
 }
 
 
@@ -1024,14 +1211,23 @@ function updateReview() {
   const records =
     getMonthlyRecords();
 
-  updateSummary(records);
-  updateChart(records);
-  updateHistory(records);
+  updateSummary(
+    records
+  );
+
+  updateChart(
+    records
+  );
+
+  updateHistory(
+    records
+  );
+
 }
 
 
 // =========================
-// バックアップ保存
+// バックアップ
 // =========================
 
 function createBackup() {
@@ -1051,10 +1247,12 @@ function createBackup() {
     );
 
     return;
+
   }
 
 
   const backup = {
+
     app:
       "kotoba-condition",
 
@@ -1065,7 +1263,9 @@ function createBackup() {
       new Date()
         .toISOString(),
 
-    data
+    data:
+      data
+
   };
 
 
@@ -1099,14 +1299,19 @@ function createBackup() {
     );
 
 
-  link.href = url;
+  link.href =
+    url;
+
 
   link.download =
     `kotoba-condition-backup-${getTodayString()}.json`;
 
 
   document.body
-    .appendChild(link);
+    .appendChild(
+      link
+    );
+
 
   link.click();
 
@@ -1125,12 +1330,9 @@ function createBackup() {
   showDataMessage(
     "バックアップを保存しました"
   );
+
 }
 
-
-// =========================
-// バックアップ復元
-// =========================
 
 function openRestoreFile() {
 
@@ -1138,13 +1340,17 @@ function openRestoreFile() {
     "";
 
   $("restoreFileInput").click();
+
 }
 
 
-function restoreBackup(event) {
+function restoreBackup(
+  event
+) {
 
   const file =
     event.target.files[0];
+
 
   if (!file) {
     return;
@@ -1178,15 +1384,14 @@ function restoreBackup(event) {
           )
         ) {
 
-          throw new Error(
-            "invalid"
-          );
+          throw new Error();
+
         }
 
 
         const ok =
           confirm(
-            "バックアップを復元します。\n\n現在この端末にある利用者と記録は、バックアップの内容に置き換わります。\n\n続けますか？"
+            "現在の利用者と記録をバックアップの内容に置き換えます。\n\n復元しますか？"
           );
 
 
@@ -1216,11 +1421,6 @@ function restoreBackup(event) {
         );
 
 
-        showMessage(
-          "利用者を選んでください"
-        );
-
-
       } catch {
 
         showDataMessage(
@@ -1233,20 +1433,10 @@ function restoreBackup(event) {
     };
 
 
-  reader.onerror =
-    function () {
-
-      showDataMessage(
-        "ファイルを読み込めませんでした",
-        true
-      );
-
-    };
-
-
   reader.readAsText(
     file
   );
+
 }
 
 
@@ -1256,13 +1446,16 @@ function showDataMessage(
 ) {
 
   $("dataMessage")
-    .textContent = text;
+    .textContent =
+      text;
+
 
   $("dataMessage")
     .style.color =
       error
         ? "#b45f59"
         : "#607b73";
+
 }
 
 
@@ -1276,6 +1469,7 @@ createScoreButtons(
   "stutter"
 );
 
+
 createScoreButtons(
   "moodButtons",
   "moodValue",
@@ -1286,16 +1480,19 @@ createScoreButtons(
 $("recordDate").value =
   getTodayString();
 
+
 $("monthSelect").value =
   getTodayString()
-    .slice(0, 7);
+    .slice(0,7);
 
 
 refreshPersons();
 
 updateReview();
 
-showPage("record");
+showPage(
+  "record"
+);
 
 
 // =========================
@@ -1306,15 +1503,21 @@ $("recordTabButton")
   .addEventListener(
     "click",
     () =>
-      showPage("record")
+      showPage(
+        "record"
+      )
   );
+
 
 $("reviewTabButton")
   .addEventListener(
     "click",
     () =>
-      showPage("review")
+      showPage(
+        "review"
+      )
   );
+
 
 $("addPersonButton")
   .addEventListener(
@@ -1322,11 +1525,13 @@ $("addPersonButton")
     addPerson
   );
 
+
 $("deletePersonButton")
   .addEventListener(
     "click",
     deletePerson
   );
+
 
 $("saveButton")
   .addEventListener(
@@ -1334,20 +1539,26 @@ $("saveButton")
     saveRecord
   );
 
+
 $("personSelect")
   .addEventListener(
     "change",
     () => {
+
       loadExistingRecord();
+
       updateReview();
+
     }
   );
+
 
 $("recordDate")
   .addEventListener(
     "change",
     loadExistingRecord
   );
+
 
 $("monthSelect")
   .addEventListener(
@@ -1362,11 +1573,13 @@ $("backupButton")
     createBackup
   );
 
+
 $("restoreButton")
   .addEventListener(
     "click",
     openRestoreFile
   );
+
 
 $("restoreFileInput")
   .addEventListener(
