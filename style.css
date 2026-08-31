@@ -4,6 +4,7 @@
 
 body {
   margin: 0;
+
   font-family:
     -apple-system,
     BlinkMacSystemFont,
@@ -12,6 +13,7 @@ body {
     sans-serif;
 
   background: #fffaf4;
+
   color: #4a4744;
 }
 
@@ -22,7 +24,9 @@ body {
 
 .app {
   max-width: 760px;
+
   margin: 0 auto;
+
   padding: 24px 16px 50px;
 }
 
@@ -33,19 +37,25 @@ body {
 
 .header {
   text-align: center;
+
   margin-bottom: 24px;
 }
 
 h1 {
   margin: 4px 0 8px;
+
   font-size: 28px;
+
   color: #4d5f6d;
+
   letter-spacing: 0.04em;
 }
 
 .subtitle {
   color: #8a817a;
+
   font-size: 14px;
+
   line-height: 1.7;
 }
 
@@ -55,34 +65,40 @@ h1 {
 ========================= */
 
 .card {
-  background: rgba(255, 255, 255, 0.96);
+  background: rgba(255,255,255,0.96);
 
-  border:
-    1px solid #f0e7dd;
+  border: 1px solid #f0e7dd;
 
   border-radius: 24px;
 
   padding: 20px;
+
   margin-bottom: 18px;
 
   box-shadow:
     0 6px 20px
-    rgba(120, 105, 90, 0.07);
+    rgba(120,105,90,0.07);
 }
 
 .card-title {
   display: flex;
+
   align-items: center;
+
   gap: 8px;
+
   margin-bottom: 16px;
 }
 
 .card-icon {
   display: flex;
+
   align-items: center;
+
   justify-content: center;
 
   width: 36px;
+
   height: 36px;
 
   border-radius: 50%;
@@ -128,8 +144,7 @@ textarea {
 
   padding: 12px 14px;
 
-  border:
-    1px solid #e3ddd5;
+  border: 1px solid #e3ddd5;
 
   border-radius: 15px;
 
@@ -138,6 +153,7 @@ textarea {
   color: #4a4744;
 
   font-size: 17px;
+
   font-family: inherit;
 
   outline: none;
@@ -150,7 +166,7 @@ textarea:focus {
 
   box-shadow:
     0 0 0 3px
-    rgba(145, 170, 162, 0.14);
+    rgba(145,170,162,0.14);
 }
 
 textarea {
@@ -170,7 +186,7 @@ textarea {
   display: grid;
 
   grid-template-columns:
-    minmax(0, 1fr)
+    minmax(0,1fr)
     auto
     auto;
 
@@ -181,7 +197,7 @@ textarea {
 
 
 /* =========================
-   ボタン共通
+   ボタン
 ========================= */
 
 button {
@@ -209,26 +225,17 @@ button:active {
   transform: scale(0.98);
 }
 
-
-/* 利用者追加 */
-
 .secondary-button {
   background: #eaf2ef;
 
   color: #557069;
 }
 
-
-/* 利用者削除 */
-
 .danger-button {
   background: #fff0ed;
 
   color: #a45e59;
 }
-
-
-/* 保存 */
 
 .save-button {
   width: 100%;
@@ -247,7 +254,64 @@ button:active {
 
   box-shadow:
     0 5px 12px
-    rgba(91, 124, 114, 0.16);
+    rgba(91,124,114,0.16);
+}
+
+
+/* =========================
+   タブ
+========================= */
+
+.tab-bar {
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap: 10px;
+
+  margin-bottom: 18px;
+
+  padding: 6px;
+
+  background: #eee9e1;
+
+  border-radius: 20px;
+}
+
+.tab-button {
+  min-height: 52px;
+
+  background: transparent;
+
+  color: #766f68;
+
+  border-radius: 16px;
+
+  box-shadow: none;
+}
+
+.tab-button.active {
+  background: white;
+
+  color: #607b73;
+
+  box-shadow:
+    0 4px 12px
+    rgba(100,90,80,0.08);
+}
+
+
+/* =========================
+   ページ切り替え
+========================= */
+
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
 }
 
 
@@ -262,8 +326,7 @@ button:active {
 
   background: #fcfaf6;
 
-  border:
-    1px solid #f0e8df;
+  border: 1px solid #f0e8df;
 
   margin-bottom: 18px;
 }
@@ -290,7 +353,7 @@ button:active {
   display: grid;
 
   grid-template-columns:
-    repeat(5, 1fr);
+    repeat(5,1fr);
 
   gap: 9px;
 }
@@ -300,12 +363,11 @@ button:active {
 
   padding: 6px;
 
-  border:
-    1px solid #e3e1dc;
+  border: 1px solid #e3e1dc;
 
   border-radius: 16px;
 
-  background: #ffffff;
+  background: white;
 
   color: #69635e;
 
@@ -313,7 +375,7 @@ button:active {
 
   box-shadow:
     0 2px 7px
-    rgba(100, 90, 80, 0.05);
+    rgba(100,90,80,0.05);
 }
 
 .score-button.selected {
@@ -325,7 +387,7 @@ button:active {
 
   box-shadow:
     0 4px 10px
-    rgba(91, 124, 114, 0.18);
+    rgba(91,124,114,0.18);
 }
 
 .score-value {
@@ -366,7 +428,7 @@ button:active {
   display: grid;
 
   grid-template-columns:
-    repeat(3, 1fr);
+    repeat(3,1fr);
 
   gap: 10px;
 
@@ -380,8 +442,7 @@ button:active {
 
   background: #fcfaf6;
 
-  border:
-    1px solid #f0e8df;
+  border: 1px solid #f0e8df;
 
   border-radius: 18px;
 }
@@ -420,13 +481,12 @@ button:active {
 
   border-radius: 18px;
 
-  border:
-    1px solid #f0e8df;
+  border: 1px solid #f0e8df;
 }
 
 
 /* =========================
-   過去の記録
+   過去記録
 ========================= */
 
 .history-list {
@@ -442,15 +502,19 @@ button:active {
 
   background: #fcfaf6;
 
-  border:
-    1px solid #f0e8df;
+  border: 1px solid #f0e8df;
+
+  cursor: pointer;
+}
+
+.history-item:active {
+  transform: scale(0.99);
 }
 
 .history-top {
   display: flex;
 
-  justify-content:
-    space-between;
+  justify-content: space-between;
 
   gap: 10px;
 
@@ -522,14 +586,6 @@ button:active {
   line-height: 1.8;
 }
 
-.soft-line {
-  height: 1px;
-
-  margin: 20px 0;
-
-  background: #f1ebe4;
-}
-
 
 /* =========================
    スマホ
@@ -580,8 +636,7 @@ button:active {
   .summary-box {
     display: flex;
 
-    justify-content:
-      space-between;
+    justify-content: space-between;
 
     align-items: center;
 
