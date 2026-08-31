@@ -13,66 +13,44 @@ body {
     sans-serif;
 
   background: #fffaf4;
-
   color: #4a4744;
 }
 
-
-/* =========================
-   全体
-========================= */
-
 .app {
   max-width: 760px;
-
   margin: 0 auto;
-
   padding: 24px 16px 50px;
 }
 
 
-/* =========================
-   ヘッダー
-========================= */
+/* ヘッダー */
 
 .header {
   text-align: center;
-
   margin-bottom: 24px;
 }
 
 h1 {
   margin: 4px 0 8px;
-
   font-size: 28px;
-
   color: #4d5f6d;
-
   letter-spacing: 0.04em;
 }
 
 .subtitle {
   color: #8a817a;
-
   font-size: 14px;
-
   line-height: 1.7;
 }
 
 
-/* =========================
-   カード
-========================= */
+/* カード */
 
 .card {
   background: rgba(255,255,255,0.96);
-
   border: 1px solid #f0e7dd;
-
   border-radius: 24px;
-
   padding: 20px;
-
   margin-bottom: 18px;
 
   box-shadow:
@@ -82,27 +60,20 @@ h1 {
 
 .card-title {
   display: flex;
-
   align-items: center;
-
   gap: 8px;
-
   margin-bottom: 16px;
 }
 
 .card-icon {
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
   width: 36px;
-
   height: 36px;
 
   border-radius: 50%;
-
   background: #eef4f1;
 
   font-size: 17px;
@@ -110,16 +81,12 @@ h1 {
 
 h2 {
   margin: 0;
-
   font-size: 19px;
-
   color: #55514d;
 }
 
 
-/* =========================
-   入力
-========================= */
+/* 入力 */
 
 .field {
   margin-bottom: 22px;
@@ -127,11 +94,8 @@ h2 {
 
 label {
   display: block;
-
   margin-bottom: 8px;
-
   font-weight: 700;
-
   color: #625d58;
 }
 
@@ -139,21 +103,17 @@ input,
 select,
 textarea {
   width: 100%;
-
   min-height: 48px;
 
   padding: 12px 14px;
 
   border: 1px solid #e3ddd5;
-
   border-radius: 15px;
 
   background: #fffdfa;
-
   color: #4a4744;
 
   font-size: 17px;
-
   font-family: inherit;
 
   outline: none;
@@ -171,16 +131,12 @@ textarea:focus {
 
 textarea {
   min-height: 100px;
-
   resize: vertical;
-
   line-height: 1.7;
 }
 
 
-/* =========================
-   利用者
-========================= */
+/* 利用者 */
 
 .person-row {
   display: grid;
@@ -191,28 +147,22 @@ textarea {
     auto;
 
   gap: 9px;
-
   align-items: center;
 }
 
 
-/* =========================
-   ボタン
-========================= */
+/* ボタン */
 
 button {
   min-height: 46px;
 
   border: none;
-
   border-radius: 15px;
 
   padding: 10px 15px;
 
   font-family: inherit;
-
   font-size: 16px;
-
   font-weight: 700;
 
   cursor: pointer;
@@ -227,30 +177,24 @@ button:active {
 
 .secondary-button {
   background: #eaf2ef;
-
   color: #557069;
 }
 
 .danger-button {
   background: #fff0ed;
-
   color: #a45e59;
 }
 
 .save-button {
   width: 100%;
-
   min-height: 56px;
 
   border-radius: 18px;
 
   background: #799b91;
-
   color: white;
 
   font-size: 18px;
-
-  letter-spacing: 0.03em;
 
   box-shadow:
     0 5px 12px
@@ -258,24 +202,18 @@ button:active {
 }
 
 
-/* =========================
-   タブ
-========================= */
+/* タブ */
 
 .tab-bar {
   display: grid;
-
-  grid-template-columns:
-    1fr 1fr;
+  grid-template-columns: 1fr 1fr;
 
   gap: 10px;
 
   margin-bottom: 18px;
-
   padding: 6px;
 
   background: #eee9e1;
-
   border-radius: 20px;
 }
 
@@ -283,28 +221,19 @@ button:active {
   min-height: 52px;
 
   background: transparent;
-
   color: #766f68;
 
   border-radius: 16px;
-
-  box-shadow: none;
 }
 
 .tab-button.active {
   background: white;
-
   color: #607b73;
 
   box-shadow:
     0 4px 12px
     rgba(100,90,80,0.08);
 }
-
-
-/* =========================
-   ページ切り替え
-========================= */
 
 .page {
   display: none;
@@ -315,9 +244,7 @@ button:active {
 }
 
 
-/* =========================
-   10段階評価
-========================= */
+/* 10段階 */
 
 .score-block {
   padding: 17px;
@@ -325,7 +252,6 @@ button:active {
   border-radius: 19px;
 
   background: #fcfaf6;
-
   border: 1px solid #f0e8df;
 
   margin-bottom: 18px;
@@ -333,42 +259,31 @@ button:active {
 
 .score-title {
   margin-bottom: 12px;
-
   font-size: 17px;
-
   color: #5c5752;
 }
 
 .score-guide {
   margin-top: 4px;
-
   color: #9a9189;
-
   font-size: 12px;
-
   font-weight: normal;
 }
 
 .score-grid {
   display: grid;
-
-  grid-template-columns:
-    repeat(5,1fr);
-
+  grid-template-columns: repeat(5,1fr);
   gap: 9px;
 }
 
 .score-button {
   min-height: 50px;
-
   padding: 6px;
 
   border: 1px solid #e3e1dc;
-
   border-radius: 16px;
 
   background: white;
-
   color: #69635e;
 
   font-size: 18px;
@@ -380,58 +295,39 @@ button:active {
 
 .score-button.selected {
   border-color: #799b91;
-
   background: #799b91;
-
   color: white;
-
-  box-shadow:
-    0 4px 10px
-    rgba(91,124,114,0.18);
 }
 
 .score-value {
   min-height: 25px;
-
   margin-top: 11px;
 
   text-align: center;
-
   color: #71877f;
 
   font-weight: 700;
 }
 
 
-/* =========================
-   メッセージ
-========================= */
+/* メッセージ */
 
 .message {
   min-height: 24px;
-
   margin-top: 13px;
 
   text-align: center;
-
   font-weight: 700;
-
-  line-height: 1.5;
 }
 
 
-/* =========================
-   月平均
-========================= */
+/* 月平均 */
 
 .summary-grid {
   display: grid;
-
-  grid-template-columns:
-    repeat(3,1fr);
+  grid-template-columns: repeat(3,1fr);
 
   gap: 10px;
-
   margin: 16px 0 20px;
 }
 
@@ -441,57 +337,42 @@ button:active {
   text-align: center;
 
   background: #fcfaf6;
-
   border: 1px solid #f0e8df;
-
   border-radius: 18px;
 }
 
 .summary-label {
   color: #8a817a;
-
   font-size: 12px;
-
   margin-bottom: 6px;
 }
 
 .summary-value {
   color: #607b73;
-
   font-size: 22px;
-
   font-weight: 700;
 }
 
 
-/* =========================
-   グラフ
-========================= */
+/* グラフ */
 
 .chart-wrap {
   position: relative;
-
   height: 300px;
 
   margin-top: 10px;
-
   padding: 10px;
 
   background: #fffdfa;
-
   border-radius: 18px;
-
   border: 1px solid #f0e8df;
 }
 
 
-/* =========================
-   過去記録
-========================= */
+/* 過去記録 */
 
 .history-list {
   display: grid;
-
   gap: 10px;
 }
 
@@ -501,39 +382,23 @@ button:active {
   border-radius: 18px;
 
   background: #fcfaf6;
-
   border: 1px solid #f0e8df;
 
   cursor: pointer;
 }
 
-.history-item:active {
-  transform: scale(0.99);
-}
-
 .history-top {
-  display: flex;
-
-  justify-content: space-between;
-
-  gap: 10px;
-
-  align-items: center;
-
   margin-bottom: 9px;
 }
 
 .history-date {
   font-weight: 700;
-
   color: #5d5955;
 }
 
 .history-scores {
   display: flex;
-
   gap: 8px;
-
   flex-wrap: wrap;
 }
 
@@ -543,11 +408,9 @@ button:active {
   border-radius: 12px;
 
   background: #eaf2ef;
-
   color: #557069;
 
   font-size: 13px;
-
   font-weight: 700;
 }
 
@@ -555,9 +418,7 @@ button:active {
   margin-top: 9px;
 
   color: #77706a;
-
   font-size: 14px;
-
   line-height: 1.6;
 
   white-space: pre-wrap;
@@ -567,35 +428,58 @@ button:active {
   padding: 20px 10px;
 
   text-align: center;
-
   color: #999087;
 
   font-size: 14px;
 }
 
 
-/* =========================
-   補足
-========================= */
+/* データ管理 */
 
 .small-note {
   color: #8a817a;
-
   font-size: 13px;
-
   line-height: 1.8;
 }
 
+.data-buttons {
+  display: grid;
+  gap: 10px;
 
-/* =========================
-   スマホ
-========================= */
+  margin-top: 18px;
+}
+
+.data-button {
+  width: 100%;
+  min-height: 54px;
+
+  background: #f1f5f3;
+  color: #557069;
+
+  border: 1px solid #dfe9e5;
+  border-radius: 17px;
+}
+
+.data-message {
+  min-height: 22px;
+
+  margin-top: 12px;
+
+  text-align: center;
+
+  color: #607b73;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+
+/* スマホ */
 
 @media (max-width: 540px) {
 
   .app {
-    padding:
-      18px 13px 40px;
+    padding: 18px 13px 40px;
   }
 
   h1 {
@@ -604,18 +488,15 @@ button:active {
 
   .card {
     padding: 17px;
-
     border-radius: 21px;
   }
 
   .person-row {
-    grid-template-columns:
-      1fr 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 
   .person-row select {
-    grid-column:
-      1 / -1;
+    grid-column: 1 / -1;
   }
 
   .score-grid {
@@ -624,20 +505,16 @@ button:active {
 
   .score-button {
     min-height: 48px;
-
     border-radius: 14px;
   }
 
   .summary-grid {
-    grid-template-columns:
-      1fr;
+    grid-template-columns: 1fr;
   }
 
   .summary-box {
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
 
     padding: 13px 16px;
@@ -645,7 +522,6 @@ button:active {
 
   .summary-label {
     margin: 0;
-
     font-size: 13px;
   }
 
@@ -656,4 +532,5 @@ button:active {
   .chart-wrap {
     height: 280px;
   }
+
 }
