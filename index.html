@@ -1,415 +1,355 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>ことばの調子記録</title>
 
-  <link
-    rel="stylesheet"
-    href="style.css"
-  >
+  <link rel="stylesheet" href="style.css">
 </head>
-
 
 <body>
 
-  <main class="app">
+<main class="app">
 
-    <header class="header">
+  <header class="header">
+    <h1>ことばの調子記録</h1>
 
-      <h1>
-        ことばの調子記録
-      </h1>
-
-      <div class="subtitle">
-        今日の話す調子と心の調子を<br>
-        ゆっくり記録していきましょう
-      </div>
-
-    </header>
+    <div class="subtitle">
+      今日の話す調子と心の調子を<br>
+      ゆっくり記録していきましょう
+    </div>
+  </header>
 
 
-    <!-- 利用者 -->
+  <!-- 利用者 -->
 
-    <section class="card">
+  <section class="card">
 
-      <div class="card-title">
+    <div class="card-title">
+      <div class="card-icon">👤</div>
+      <h2>利用者</h2>
+    </div>
 
-        <div class="card-icon">
-          👤
-        </div>
+    <div class="person-row">
 
-        <h2>
-          利用者
-        </h2>
-
-      </div>
-
-
-      <div class="person-row">
-
-        <select id="personSelect">
-
-          <option value="">
-            利用者を選んでください
-          </option>
-
-        </select>
-
-
-        <button
-          id="addPersonButton"
-          class="secondary-button"
-          type="button"
-        >
-          ＋ 追加
-        </button>
-
-
-        <button
-          id="deletePersonButton"
-          class="danger-button"
-          type="button"
-        >
-          削除
-        </button>
-
-      </div>
-
-    </section>
-
-
-    <!-- タブ -->
-
-    <div class="tab-bar">
+      <select id="personSelect">
+        <option value="">
+          利用者を選んでください
+        </option>
+      </select>
 
       <button
-        id="recordTabButton"
-        class="tab-button active"
+        id="addPersonButton"
+        class="secondary-button"
         type="button"
       >
-        ✏️ 記録する
+        ＋ 追加
       </button>
 
       <button
-        id="reviewTabButton"
-        class="tab-button"
+        id="deletePersonButton"
+        class="danger-button"
         type="button"
       >
-        📊 振り返る
+        削除
       </button>
 
     </div>
 
+  </section>
 
-    <!-- =====================
-         記録する画面
-    ====================== -->
 
-    <div
-      id="recordPage"
-      class="page active"
+  <!-- タブ -->
+
+  <div class="tab-bar">
+
+    <button
+      id="recordTabButton"
+      class="tab-button active"
+      type="button"
     >
+      ✏️ 記録する
+    </button>
 
-      <section class="card">
+    <button
+      id="reviewTabButton"
+      class="tab-button"
+      type="button"
+    >
+      📊 振り返る
+    </button>
 
-        <div class="card-title">
-
-          <div class="card-icon">
-            ✏️
-          </div>
-
-          <h2>
-            今日の記録
-          </h2>
-
-        </div>
+  </div>
 
 
-        <div class="field">
+  <!-- 記録する -->
 
-          <label for="recordDate">
-            日付
-          </label>
+  <div id="recordPage" class="page active">
 
-          <input
-            id="recordDate"
-            type="date"
-          >
+    <section class="card">
 
-        </div>
+      <div class="card-title">
+        <div class="card-icon">✏️</div>
+        <h2>今日の記録</h2>
+      </div>
 
 
-        <!-- 吃音 -->
+      <div class="field">
 
-        <div class="score-block">
+        <label for="recordDate">
+          日付
+        </label>
 
-          <div class="score-title">
-
-            <strong>
-              吃音の調子
-            </strong>
-
-            <div class="score-guide">
-              1〜10から選びます
-            </div>
-
-          </div>
-
-
-          <div
-            id="stutterButtons"
-            class="score-grid"
-          ></div>
-
-
-          <div
-            id="stutterValue"
-            class="score-value"
-          >
-            未選択
-          </div>
-
-        </div>
-
-
-        <!-- 心 -->
-
-        <div class="score-block">
-
-          <div class="score-title">
-
-            <strong>
-              心の調子
-            </strong>
-
-            <div class="score-guide">
-              1〜10から選びます
-            </div>
-
-          </div>
-
-
-          <div
-            id="moodButtons"
-            class="score-grid"
-          ></div>
-
-
-          <div
-            id="moodValue"
-            class="score-value"
-          >
-            未選択
-          </div>
-
-        </div>
-
-
-        <div class="field">
-
-          <label for="memo">
-            メモ
-          </label>
-
-          <textarea
-            id="memo"
-            placeholder="今日の出来事や、話した場面などを自由に記録できます"
-          ></textarea>
-
-        </div>
-
-
-        <button
-          id="saveButton"
-          class="save-button"
-          type="button"
+        <input
+          id="recordDate"
+          type="date"
         >
-          記録する
-        </button>
 
+      </div>
+
+
+      <div class="score-block">
+
+        <div class="score-title">
+          <strong>吃音の調子</strong>
+
+          <div class="score-guide">
+            1〜10から選びます
+          </div>
+        </div>
 
         <div
-          id="message"
-          class="message"
+          id="stutterButtons"
+          class="score-grid"
         ></div>
 
-      </section>
-
-    </div>
-
-
-    <!-- =====================
-         振り返る画面
-    ====================== -->
-
-    <div
-      id="reviewPage"
-      class="page"
-    >
-
-      <section class="card">
-
-        <div class="card-title">
-
-          <div class="card-icon">
-            📊
-          </div>
-
-          <h2>
-            月の振り返り
-          </h2>
-
+        <div
+          id="stutterValue"
+          class="score-value"
+        >
+          未選択
         </div>
 
-
-        <div class="field">
-
-          <label for="monthSelect">
-            月を選ぶ
-          </label>
-
-          <input
-            id="monthSelect"
-            type="month"
-          >
-
-        </div>
+      </div>
 
 
-        <div class="summary-grid">
+      <div class="score-block">
 
+        <div class="score-title">
+          <strong>心の調子</strong>
 
-          <div class="summary-box">
-
-            <div class="summary-label">
-              吃音の調子 平均
-            </div>
-
-            <div
-              id="stutterAverage"
-              class="summary-value"
-            >
-              -
-            </div>
-
+          <div class="score-guide">
+            1〜10から選びます
           </div>
-
-
-          <div class="summary-box">
-
-            <div class="summary-label">
-              心の調子 平均
-            </div>
-
-            <div
-              id="moodAverage"
-              class="summary-value"
-            >
-              -
-            </div>
-
-          </div>
-
-
-          <div class="summary-box">
-
-            <div class="summary-label">
-              記録した日
-            </div>
-
-            <div
-              id="recordCount"
-              class="summary-value"
-            >
-              0日
-            </div>
-
-          </div>
-
         </div>
-
-
-        <div class="chart-wrap">
-
-          <canvas
-            id="conditionChart"
-          ></canvas>
-
-        </div>
-
-      </section>
-
-
-      <section class="card">
-
-        <div class="card-title">
-
-          <div class="card-icon">
-            📖
-          </div>
-
-          <h2>
-            過去の記録
-          </h2>
-
-        </div>
-
 
         <div
-          id="historyList"
-          class="history-list"
+          id="moodButtons"
+          class="score-grid"
+        ></div>
+
+        <div
+          id="moodValue"
+          class="score-value"
         >
-
-          <div class="empty-message">
-            利用者を選ぶと記録が表示されます
-          </div>
-
+          未選択
         </div>
 
-      </section>
+      </div>
 
-    </div>
+
+      <div class="field">
+
+        <label for="memo">
+          メモ
+        </label>
+
+        <textarea
+          id="memo"
+          placeholder="今日の出来事や、話した場面などを自由に記録できます"
+        ></textarea>
+
+      </div>
+
+
+      <button
+        id="saveButton"
+        class="save-button"
+        type="button"
+      >
+        記録する
+      </button>
+
+      <div
+        id="message"
+        class="message"
+      ></div>
+
+    </section>
+
+  </div>
+
+
+  <!-- 振り返る -->
+
+  <div id="reviewPage" class="page">
+
+    <section class="card">
+
+      <div class="card-title">
+        <div class="card-icon">📊</div>
+        <h2>月の振り返り</h2>
+      </div>
+
+
+      <div class="field">
+
+        <label for="monthSelect">
+          月を選ぶ
+        </label>
+
+        <input
+          id="monthSelect"
+          type="month"
+        >
+
+      </div>
+
+
+      <div class="summary-grid">
+
+        <div class="summary-box">
+          <div class="summary-label">
+            吃音の調子 平均
+          </div>
+
+          <div
+            id="stutterAverage"
+            class="summary-value"
+          >
+            -
+          </div>
+        </div>
+
+
+        <div class="summary-box">
+          <div class="summary-label">
+            心の調子 平均
+          </div>
+
+          <div
+            id="moodAverage"
+            class="summary-value"
+          >
+            -
+          </div>
+        </div>
+
+
+        <div class="summary-box">
+          <div class="summary-label">
+            記録した日
+          </div>
+
+          <div
+            id="recordCount"
+            class="summary-value"
+          >
+            0日
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="chart-wrap">
+        <canvas id="conditionChart"></canvas>
+      </div>
+
+    </section>
 
 
     <section class="card">
 
       <div class="card-title">
-
-        <div class="card-icon">
-          🌿
-        </div>
-
-        <h2>
-          記録について
-        </h2>
-
+        <div class="card-icon">📖</div>
+        <h2>過去の記録</h2>
       </div>
 
-
-      <div class="small-note">
-        記録はこの端末のブラウザ内に保存されます。
-        利用者ごとに記録を分けて管理できます。
+      <div
+        id="historyList"
+        class="history-list"
+      >
+        <div class="empty-message">
+          利用者を選ぶと記録が表示されます
+        </div>
       </div>
 
     </section>
 
-  </main>
+  </div>
 
 
-  <script
-    src="https://cdn.jsdelivr.net/npm/chart.js"
-  ></script>
+  <!-- データ管理 -->
 
-  <script src="script.js"></script>
+  <section class="card">
+
+    <div class="card-title">
+      <div class="card-icon">⚙️</div>
+      <h2>データ管理</h2>
+    </div>
+
+    <div class="small-note">
+      記録はこの端末のブラウザ内に保存されています。
+      大切な記録は定期的にバックアップしてください。
+    </div>
+
+
+    <div class="data-buttons">
+
+      <button
+        id="backupButton"
+        class="data-button"
+        type="button"
+      >
+        📦 バックアップを保存
+      </button>
+
+
+      <button
+        id="restoreButton"
+        class="data-button"
+        type="button"
+      >
+        📂 バックアップから復元
+      </button>
+
+    </div>
+
+
+    <input
+      id="restoreFileInput"
+      type="file"
+      accept=".json,application/json"
+      hidden
+    >
+
+
+    <div
+      id="dataMessage"
+      class="data-message"
+    ></div>
+
+  </section>
+
+
+</main>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="script.js"></script>
 
 </body>
-
 </html>
