@@ -1,1 +1,324 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>ことばの調子記録</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Hiragino Sans",
+        "Yu Gothic",
+        sans-serif;
+      background: #f7f8fb;
+      color: #333;
+    }
+
+    .app {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 20px 16px 40px;
+    }
+
+    h1 {
+      margin: 8px 0 4px;
+      text-align: center;
+      font-size: 28px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #777;
+      margin-bottom: 24px;
+      font-size: 14px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      padding: 18px;
+      margin-bottom: 16px;
+      box-shadow: 0 3px 14px rgba(0, 0, 0, 0.06);
+    }
+
+    h2 {
+      font-size: 19px;
+      margin: 0 0 14px;
+    }
+
+    label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 7px;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      font-size: 17px;
+      border: 1px solid #d9dce4;
+      border-radius: 12px;
+      padding: 12px;
+      background: white;
+    }
+
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .field {
+      margin-bottom: 18px;
+    }
+
+    .person-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+    }
+
+    button {
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 700;
+      min-height: 46px;
+      padding: 10px 16px;
+      cursor: pointer;
+    }
+
+    .secondary-button {
+      background: #eceff5;
+      color: #333;
+    }
+
+    .danger-button {
+      background: #fff0f0;
+      color: #a33;
+    }
+
+    .save-button {
+      width: 100%;
+      background: #5269d8;
+      color: white;
+      font-size: 18px;
+      min-height: 54px;
+      margin-top: 4px;
+    }
+
+    .score-title {
+      margin-bottom: 10px;
+    }
+
+    .score-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+    }
+
+    .score-button {
+      background: #f0f2f7;
+      color: #333;
+      min-width: 0;
+      padding: 12px 4px;
+      font-size: 18px;
+    }
+
+    .score-button.selected {
+      background: #5269d8;
+      color: white;
+    }
+
+    .score-value {
+      text-align: center;
+      margin-top: 10px;
+      font-weight: 700;
+      min-height: 24px;
+    }
+
+    .message {
+      margin-top: 12px;
+      text-align: center;
+      font-weight: 700;
+      color: #376d3f;
+      min-height: 24px;
+    }
+
+    .small-note {
+      font-size: 13px;
+      color: #777;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 480px) {
+      .score-grid {
+        grid-template-columns: repeat(5, 1fr);
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      .card {
+        padding: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="app">
+
+    <h1>ことばの調子記録</h1>
+
+    <div class="subtitle">
+      毎日の話す調子と心の調子を記録します
+    </div>
+
+
+    <section class="card">
+
+      <h2>利用者</h2>
+
+      <div class="person-row">
+
+        <select id="personSelect">
+          <option value="">
+            利用者を選んでください
+          </option>
+        </select>
+
+        <button
+          id="addPersonButton"
+          class="secondary-button"
+          type="button"
+        >
+          ＋追加
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <section class="card">
+
+      <h2>今日の記録</h2>
+
+
+      <div class="field">
+
+        <label for="recordDate">
+          日付
+        </label>
+
+        <input
+          id="recordDate"
+          type="date"
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <div class="score-title">
+          <strong>吃音の調子</strong>
+        </div>
+
+        <div
+          id="stutterButtons"
+          class="score-grid"
+        ></div>
+
+        <div
+          id="stutterValue"
+          class="score-value"
+        >
+          未選択
+        </div>
+
+      </div>
+
+
+      <div class="field">
+
+        <div class="score-title">
+          <strong>心の調子</strong>
+        </div>
+
+        <div
+          id="moodButtons"
+          class="score-grid"
+        ></div>
+
+        <div
+          id="moodValue"
+          class="score-value"
+        >
+          未選択
+        </div>
+
+      </div>
+
+
+      <div class="field">
+
+        <label for="memo">
+          メモ
+        </label>
+
+        <textarea
+          id="memo"
+          placeholder="今日の出来事や話した場面など（任意）"
+        ></textarea>
+
+      </div>
+
+
+      <button
+        id="saveButton"
+        class="save-button"
+        type="button"
+      >
+        記録を保存
+      </button>
+
+      <div
+        id="message"
+        class="message"
+      ></div>
+
+    </section>
+
+
+    <section class="card">
+
+      <h2>このアプリについて</h2>
+
+      <div class="small-note">
+        記録はこの端末のブラウザ内に保存します。
+        今後、過去の記録・月平均・グラフ・
+        バックアップ機能を追加していきます。
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
