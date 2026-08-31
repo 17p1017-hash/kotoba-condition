@@ -1,25 +1,38 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>ことばの調子記録</title>
 
-  <link rel="stylesheet" href="style.css">
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
 </head>
+
 
 <body>
 
 <main class="app">
 
   <header class="header">
-    <h1>ことばの調子記録</h1>
+
+    <h1>
+      ことばの調子記録
+    </h1>
 
     <div class="subtitle">
       今日の話す調子と心の調子を<br>
       ゆっくり記録していきましょう
     </div>
+
   </header>
 
 
@@ -35,10 +48,13 @@
     <div class="person-row">
 
       <select id="personSelect">
+
         <option value="">
           利用者を選んでください
         </option>
+
       </select>
+
 
       <button
         id="addPersonButton"
@@ -47,6 +63,7 @@
       >
         ＋ 追加
       </button>
+
 
       <button
         id="deletePersonButton"
@@ -84,9 +101,12 @@
   </div>
 
 
-  <!-- 記録する -->
+  <!-- 記録 -->
 
-  <div id="recordPage" class="page active">
+  <div
+    id="recordPage"
+    class="page active"
+  >
 
     <section class="card">
 
@@ -110,20 +130,47 @@
       </div>
 
 
+      <!-- 吃音の調子 -->
+
       <div class="score-block">
 
         <div class="score-title">
-          <strong>吃音の調子</strong>
+
+          <strong>
+            吃音の調子
+          </strong>
 
           <div class="score-guide">
-            1〜10から選びます
+            数字が高いほど調子がいい
           </div>
+
         </div>
+
+
+        <div class="score-direction">
+
+          <span class="score-low">
+            1<br>
+            <small>調子がよくない</small>
+          </span>
+
+          <span class="score-arrow">
+            →
+          </span>
+
+          <span class="score-high">
+            10<br>
+            <small>調子がいい</small>
+          </span>
+
+        </div>
+
 
         <div
           id="stutterButtons"
           class="score-grid"
         ></div>
+
 
         <div
           id="stutterValue"
@@ -135,20 +182,47 @@
       </div>
 
 
+      <!-- 心の調子 -->
+
       <div class="score-block">
 
         <div class="score-title">
-          <strong>心の調子</strong>
+
+          <strong>
+            心の調子
+          </strong>
 
           <div class="score-guide">
-            1〜10から選びます
+            数字が高いほど調子がいい
           </div>
+
         </div>
+
+
+        <div class="score-direction">
+
+          <span class="score-low">
+            1<br>
+            <small>調子がよくない</small>
+          </span>
+
+          <span class="score-arrow">
+            →
+          </span>
+
+          <span class="score-high">
+            10<br>
+            <small>調子がいい</small>
+          </span>
+
+        </div>
+
 
         <div
           id="moodButtons"
           class="score-grid"
         ></div>
+
 
         <div
           id="moodValue"
@@ -182,6 +256,7 @@
         記録する
       </button>
 
+
       <div
         id="message"
         class="message"
@@ -192,15 +267,23 @@
   </div>
 
 
-  <!-- 振り返る -->
+  <!-- 振り返り -->
 
-  <div id="reviewPage" class="page">
+  <div
+    id="reviewPage"
+    class="page"
+  >
 
     <section class="card">
 
       <div class="card-title">
         <div class="card-icon">📊</div>
         <h2>月の振り返り</h2>
+      </div>
+
+
+      <div class="review-guide">
+        10に近いほど調子がいい記録です
       </div>
 
 
@@ -221,6 +304,7 @@
       <div class="summary-grid">
 
         <div class="summary-box">
+
           <div class="summary-label">
             吃音の調子 平均
           </div>
@@ -231,10 +315,12 @@
           >
             -
           </div>
+
         </div>
 
 
         <div class="summary-box">
+
           <div class="summary-label">
             心の調子 平均
           </div>
@@ -245,10 +331,12 @@
           >
             -
           </div>
+
         </div>
 
 
         <div class="summary-box">
+
           <div class="summary-label">
             記録した日
           </div>
@@ -259,6 +347,7 @@
           >
             0日
           </div>
+
         </div>
 
       </div>
@@ -278,14 +367,11 @@
         <h2>過去の記録</h2>
       </div>
 
+
       <div
         id="historyList"
         class="history-list"
-      >
-        <div class="empty-message">
-          利用者を選ぶと記録が表示されます
-        </div>
-      </div>
+      ></div>
 
     </section>
 
@@ -300,6 +386,7 @@
       <div class="card-icon">⚙️</div>
       <h2>データ管理</h2>
     </div>
+
 
     <div class="small-note">
       記録はこの端末のブラウザ内に保存されています。
@@ -344,7 +431,6 @@
 
   </section>
 
-
 </main>
 
 
@@ -352,4 +438,5 @@
 <script src="script.js"></script>
 
 </body>
+
 </html>
